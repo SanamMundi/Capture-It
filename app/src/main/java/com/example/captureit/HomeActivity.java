@@ -35,11 +35,13 @@ public class HomeActivity extends AppCompatActivity {
                 case R.id.maps:
                     fragment = new MapFragment();
 //                    mTextMessage.setText(R.string.title_home);
-//                    loadFragment(fragment);
-                    logout();
+                    loadFragment(fragment);
                     return true;
                 case R.id.navigation_more:
 //                    mTextMessage.setText(R.string.title_notifications);
+                    fragment = new MoreFragment();
+//                    mTextMessage.setText(R.string.title_home);
+                    loadFragment(fragment);
                     return true;
             }
             return false;

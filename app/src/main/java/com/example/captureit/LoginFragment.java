@@ -87,7 +87,7 @@ public class LoginFragment extends Fragment {
                                                     userRole=document.get("role")+"";
                                                     if(userRole.equals("admin")){
                                                         Log.d("hello", "Hhhhhhhhhhhhhhhhhhhhhhhhhhh");
-                                                        startActivity(new Intent(getContext(),LoginActivity.class));}
+                                                        startActivity(new Intent(getContext(),BaseActivity.class));}
                                                     else{
                                                     Log.d("already logged in", "dddddddddddddddddd");
                                                         startActivity(new Intent(getContext(), BaseActivity.class));}

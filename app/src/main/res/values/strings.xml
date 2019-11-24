@@ -17,4 +17,6 @@
     <string name="title_equip">Equipment</string>
     <string name="title_more">More</string>
     <string name="title_maps">Near Me</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="apiKey">AIzaSyDu3z-QffLCQhjBuG2No9xtvihka4QQlVY</string>
 </resources>
