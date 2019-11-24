@@ -12,6 +12,11 @@
         android:title="@string/title_equip" />
 
     <item
+        android:id="@+id/maps"
+        android:icon="@drawable/ic_my_location_black_24dp"
+        android:title="@string/title_maps"/>
+
+    <item
         android:id="@+id/navigation_more"
         android:icon="@drawable/ic_person_black_24dp"
         android:title="@string/title_more" />

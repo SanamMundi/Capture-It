@@ -5,10 +5,28 @@
     android:layout_height="match_parent"
     tools:context=".MoreFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:padding="10dp"
+        android:gravity="center_horizontal"
+        android:id="@+id/user"
+        />
+
+
+    <ImageView
+        android:id="@+id/imageTravel"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:scaleType="fitXY"/>
+        <!--android:src="@drawable/travel"-->
+
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 
 </FrameLayout>

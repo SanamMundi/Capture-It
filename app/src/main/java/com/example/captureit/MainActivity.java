@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentManager = getSupportFragmentManager();
 
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
-        Log.d("useremail", currentUser.getEmail());
+//        Log.d("useremail", currentUser.getEmail());
 
         if(currentUser!=null){
             Log.d("current user", currentUser.toString());

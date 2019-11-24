@@ -62,7 +62,7 @@ public class SignUpFragment extends Fragment {
         FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
                 .setTimestampsInSnapshotsEnabled(true)
                 .build();
-        db.setFirestoreSettings(settings);
+//        db.setFirestoreSettings(settings);
 
 
         signUp.setOnClickListener(new View.OnClickListener() {
@@ -89,7 +89,7 @@ public class SignUpFragment extends Fragment {
 
                                 if(!user.getEmail().equals("jasmine@gmail.com")) {
                                     Toast.makeText(getContext(), "already logged in ", Toast.LENGTH_LONG).show();
-                                    intent = new Intent(getContext(),BaseActivity.class);
+                                    intent = new Intent(getContext(),HomeActivity.class);
 
                                     data.put("role", "user");
                                 }

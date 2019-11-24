@@ -1,8 +1,10 @@
 package com.example.captureit;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.NonNull;
@@ -30,6 +32,12 @@ public class HomeActivity extends AppCompatActivity {
                 case R.id.navigation_dashboard:
 //                    mTextMessage.setText(R.string.title_dashboard);
                     return true;
+                case R.id.maps:
+                    fragment = new MapFragment();
+//                    mTextMessage.setText(R.string.title_home);
+//                    loadFragment(fragment);
+                    logout();
+                    return true;
                 case R.id.navigation_more:
 //                    mTextMessage.setText(R.string.title_notifications);
                     return true;
@@ -53,5 +61,15 @@ public class HomeActivity extends AppCompatActivity {
         transaction.addToBackStack(null);
         transaction.commit();
     }
+
+
+    public void logout()
+    {
+        FirebaseAuth.getInstance().signOut();
+        Intent intent = new Intent(getApplicationContext(),BaseActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
+
 
 }
