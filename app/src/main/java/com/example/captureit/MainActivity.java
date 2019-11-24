@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentManager = getSupportFragmentManager();
 
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+        Log.d("useremail", currentUser.getEmail());
 
         if(currentUser!=null){
             Log.d("current user", currentUser.toString());
@@ -48,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                     DocumentSnapshot document = task.getResult();
                     if(document.exists()){
-                        intent = new Intent(MainActivity.this, BaseActivity.class);
+                        intent = new Intent(MainActivity.this, HomeActivity.class);
                         startActivity(intent);
                     }
                 }
