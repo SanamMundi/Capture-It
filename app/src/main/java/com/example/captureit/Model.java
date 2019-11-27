@@ -3,7 +3,7 @@ package com.example.captureit;
 public class Model {
 
     private String title, description;
-    private int img;
+    private String img;
 
     public String getTitle() {
         return title;
@@ -17,7 +17,7 @@ public class Model {
         this.description = description;
     }
 
-    public void setImg(int img) {
+    public void setImg(String img) {
         this.img = img;
     }
 
@@ -25,7 +25,7 @@ public class Model {
         return description;
     }
 
-    public int getImg() {
+    public String getImg() {
         return img;
     }
 }

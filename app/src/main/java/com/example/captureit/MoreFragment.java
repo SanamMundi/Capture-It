@@ -134,7 +134,7 @@ public class MoreFragment extends Fragment {
     public void logout()
     {
         FirebaseAuth.getInstance().signOut();
-        Intent intent = new Intent(getContext(),BaseActivity.class);
+        Intent intent = new Intent(getContext(),MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }

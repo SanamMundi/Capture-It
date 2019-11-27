@@ -11,8 +11,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bumptech.glide.Glide;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+
+import io.grpc.Context;
 
 
 /**
@@ -21,6 +25,7 @@ import java.util.ArrayList;
 public class HomeFragment extends Fragment {
 
 
+//    Context ctx;
     RecyclerView mRecyclerView;
     MyAdapter myAdapter;
 
@@ -51,19 +56,22 @@ public class HomeFragment extends Fragment {
         Model m = new Model();
         m.setTitle("News Feed");
         m.setDescription("this is something");
-        m.setImg(R.drawable.button_default);
+        m.setImg("https://images.ctfassets.net/yadj1kx9rmg0/wtrHxeu3zEoEce2MokCSi/cf6f68efdcf625fdc060607df0f3baef/quwowooybuqbl6ntboz3.jpg");
+//        m.setImg(R.drawable.button_default);
         models.add(m);
 
         m = new Model();
         m.setTitle("News Feed");
         m.setDescription("this is something");
-        m.setImg(R.drawable.button_default);
+//        m.setImg(R.drawable.button_default);
         models.add(m);
+
+//        Glide.with(ctx).load("images.ctfassets.net/yadj1kx9rmg0/wtrHxeu3zEoEce2MokCSi/cf6f68efdcf625fdc060607df0f3baef/quwowooybuqbl6ntboz3.jpg").into(m.setImg();)
 
         m = new Model();
         m.setTitle("News Feed");
         m.setDescription("this is something");
-        m.setImg(R.drawable.common_google_signin_btn_text_dark_focused);
+//        m.setImg(R.drawable.common_google_signin_btn_text_dark_focused);
         models.add(m);
 
         return models;
