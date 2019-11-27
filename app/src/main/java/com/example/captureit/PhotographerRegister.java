@@ -44,6 +44,10 @@ public class PhotographerRegister extends Fragment {
         experienceSpinner.setAdapter(adapter1);
 //        String result = validateData();
 
+
+        String locationData = locationSpinner.getSelectedItem().toString();
+        String experienceData = experienceSpinner.getSelectedItem().toString();
+
         return v;
     }
 
