@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 
 
@@ -20,6 +21,7 @@ public class PhotographerRegister extends Fragment {
 
     Spinner locationSpinner;
     Spinner experienceSpinner;
+    private Button pRegister;
 
     public PhotographerRegister() {
         // Required empty public constructor
@@ -34,6 +36,7 @@ public class PhotographerRegister extends Fragment {
 
         locationSpinner = v.findViewById(R.id.spinnerLocation);
         experienceSpinner = v.findViewById(R.id.spinnerExperience);
+        pRegister = v.findViewById(R.id.photgrapherRegister);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),R.array.location, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -42,12 +45,19 @@ public class PhotographerRegister extends Fragment {
         ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(getContext(), R.array.experience, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         experienceSpinner.setAdapter(adapter1);
-//        String result = validateData();
 
 
         String locationData = locationSpinner.getSelectedItem().toString();
         String experienceData = experienceSpinner.getSelectedItem().toString();
 
+
+        pRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                MainActivity.addImagesFragment();
+            }
+        });
         return v;
     }
 

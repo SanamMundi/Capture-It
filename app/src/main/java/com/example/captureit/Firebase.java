@@ -12,6 +12,8 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -21,7 +23,11 @@ import static android.content.ContentValues.TAG;
 public class Firebase {
 
 
+
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+
+
 
     public void addData(){
         // Create a new user with a first and last name
@@ -65,6 +71,9 @@ public class Firebase {
                     }
                 });
     }
+
+
+    //uploading a file
 
 
 }

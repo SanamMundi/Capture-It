@@ -74,4 +74,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentManager.beginTransaction().replace(R.id.frameContainer, new PhotographerRegister()).commit();
     }
 
+    public static void addImagesFragment(){
+        fragmentManager.beginTransaction().replace(R.id.frameContainer, new AddImagesFragment()).commit();
+    }
 }

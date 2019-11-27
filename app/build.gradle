@@ -39,12 +39,16 @@ dependencies {
     //RecyclerView
     implementation 'com.android.support:recyclerview-v7:28.0.0'
 
+    implementation 'com.google.firebase:firebase-storage:19.1.0'
+
+    implementation 'com.squareup.picasso:picasso:2.5.2'
     //Card View
     implementation 'com.android.support:cardview-v7:28.0.0'
 
     implementation 'androidx.vectordrawable:vectordrawable:1.1.0'
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
     implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'com.google.firebase:firebase-database:16.0.4'
     testImplementation 'junit:junit:4.12'
     implementation 'com.google.firebase:firebase-analytics:17.2.0'
     androidTestImplementation 'androidx.test:runner:1.2.0'
