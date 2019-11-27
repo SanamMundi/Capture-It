@@ -19,4 +19,20 @@
     <string name="title_maps">Near Me</string>
     <string name="title_activity_maps">Map</string>
     <string name="apiKey">AIzaSyDu3z-QffLCQhjBuG2No9xtvihka4QQlVY</string>
+
+    <string-array name="location">
+        <item>Vancouver</item>
+        <item>Richmond</item>
+        <item>Surrey</item>
+        <item>Burnaby</item>
+        <item>Langley</item>
+    </string-array>
+
+    <string-array name="experience">
+        <item>Less than 1 year</item>
+        <item>1-3 years</item>
+        <item>3-5 years</item>
+        <item>More than 5 years</item>
+
+    </string-array>
 </resources>

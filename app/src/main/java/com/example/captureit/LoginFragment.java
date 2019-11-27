@@ -35,6 +35,7 @@ public class LoginFragment extends Fragment {
     private FirebaseAuth mAuth;
     private EditText eTEmail,eTPassword;
     private TextView createAccount;
+    private TextView registerAsPhotographer;
     FirebaseFirestore db;
     int RC_SIGN_IN;
     String userRole;
@@ -57,6 +58,7 @@ public class LoginFragment extends Fragment {
         eTEmail = v.findViewById(R.id.editText);
         eTPassword =v.findViewById(R.id.editText2);
         createAccount = v.findViewById(R.id.textView6);
+        registerAsPhotographer = v.findViewById(R.id.photoRegister);
 
         Button signIn = (Button)v.findViewById(R.id.signInButton);
 
@@ -115,6 +117,13 @@ public class LoginFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 MainActivity.signUpFragment();
+            }
+        });
+
+        registerAsPhotographer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainActivity.photoRegisterFragment();
             }
         });
 

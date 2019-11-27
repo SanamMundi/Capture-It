@@ -69,4 +69,9 @@ public class MainActivity extends AppCompatActivity {
     {
         fragmentManager.beginTransaction().replace(R.id.frameContainer,new SignUpFragment()).commit();
     }
+
+    public static void photoRegisterFragment(){
+        fragmentManager.beginTransaction().replace(R.id.frameContainer, new PhotographerRegister()).commit();
+    }
+
 }
