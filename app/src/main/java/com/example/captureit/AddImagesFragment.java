@@ -31,6 +31,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 import com.google.firestore.admin.v1beta1.Progress;
 
@@ -64,6 +65,7 @@ AddImagesFragment extends Fragment {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
 
     DatabaseReference mdatabaseRef = database.getReference("uploads/");
+    private StorageTask mUploadTask;
 
 
 
@@ -111,7 +113,11 @@ AddImagesFragment extends Fragment {
         buttonUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                uploadFile();
+                if (mUploadTask != null && mUploadTask.isInProgress()) {
+                    Toast.makeText(getContext(), "Upload in progress", Toast.LENGTH_SHORT).show();
+                } else {
+                    uploadFile();
+                }
             }
         });
 
@@ -162,7 +168,7 @@ AddImagesFragment extends Fragment {
             StorageReference fileReference = mstorageRef.child(System.currentTimeMillis()
             + "." + getFileExtension(mImageUri));
 
-            fileReference.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            mUploadTask = fileReference.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     Handler handler = new Handler();
