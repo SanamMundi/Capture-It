@@ -87,13 +87,13 @@ public class SignUpFragment extends Fragment {
                                 data.put("email",user.getEmail());
 
 
-                                if(!user.getEmail().equals("jasmine@gmail.com")) {
+                                if(!user.getEmail().equals("admin@gmail.com")) {
                                     Toast.makeText(getContext(), "already logged in ", Toast.LENGTH_LONG).show();
                                     intent = new Intent(getContext(),HomeActivity.class);
                                     data.put("role", "user");
                                 }
                                 else {
-                                    intent = new Intent(getContext(), BaseActivity.class);
+                                    intent = new Intent(getContext(), AdminActivity.class);
                                     data.put("role", "admin");
                                 }
 

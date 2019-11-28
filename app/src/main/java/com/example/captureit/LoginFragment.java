@@ -89,10 +89,13 @@ public class LoginFragment extends Fragment {
                                                     userRole=document.get("role")+"";
                                                     if(userRole.equals("admin")){
                                                         Log.d("hello", "Hhhhhhhhhhhhhhhhhhhhhhhhhhh");
-                                                        startActivity(new Intent(getContext(),BaseActivity.class));}
-                                                    else{
+                                                        startActivity(new Intent(getContext(),AdminActivity.class));}
+                                                    else if(userRole.equals("user")){
                                                     Log.d("already logged in", "dddddddddddddddddd");
-                                                        startActivity(new Intent(getContext(), MainActivity.class));}
+                                                        startActivity(new Intent(getContext(), MainActivity.class));
+                                                    }else if(userRole.equals("photographer")){
+                                                        startActivity(new Intent(getContext(), PhotographerProfileActivity.class));
+                                                    }
 
                                                 } else {
                                                     Log.d("signin", "No such document");

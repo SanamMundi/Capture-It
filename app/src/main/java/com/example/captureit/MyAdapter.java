@@ -12,6 +12,9 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
@@ -19,6 +22,9 @@ import java.util.ArrayList;
 public class MyAdapter extends RecyclerView.Adapter<MyHolder> {
 
     Context c;
+    FirebaseAuth auth =  FirebaseAuth.getInstance();
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    FirebaseUser user;
     ArrayList<Model> models;
 
     HomeActivity ha = new HomeActivity();
@@ -37,6 +43,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyHolder> {
 
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.res, null);
 
+        user = auth.getCurrentUser();
         return new MyHolder(view);
     }
 
@@ -67,11 +74,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyHolder> {
                 i.putExtra("iTitle", gTitle);
                 i.putExtra("iDesc", gDesc);
                 i.putExtra("iImage", gImg);
+                i.putExtra("id", user.getUid());
                 c.startActivity(i);
-
-
-
-
             }
         });
 

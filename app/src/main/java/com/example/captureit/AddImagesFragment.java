@@ -51,12 +51,23 @@ AddImagesFragment extends Fragment {
     private Button buttonUpload, buttonProceed;
     FirebaseAuth auth =  FirebaseAuth.getInstance();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    FirebaseUser user;
+    FirebaseUser user =auth.getCurrentUser();
+    String ema = user.getEmail();
     private Button buttonChoose;
+//    private FirebaseDatabase database;
     private ProgressBar pBar;
     private ImageView img;
 
-    private StorageReference mstorageRef;
+
+    StorageReference mstorageRef = FirebaseStorage.getInstance().getReference("uploads/");
+
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+    DatabaseReference mdatabaseRef = database.getReference("uploads/");
+
+
+
+//    private StorageReference mstorageRef;
 //    private DatabaseReference mdatabaseRef;
 
 
@@ -76,8 +87,8 @@ AddImagesFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_add_images, container, false);
 
-        user = auth.getCurrentUser();
-        String userEmail = user.getUid();
+//        user = auth.getCurrentUser();
+//        String userEmail = user.getEmail();
 
 
 
@@ -86,13 +97,6 @@ AddImagesFragment extends Fragment {
         img = v.findViewById(R.id.imageShow);
         pBar = v.findViewById(R.id.progressBar);
         buttonProceed = v.findViewById(R.id.proceedButton);
-
-        mstorageRef = FirebaseStorage.getInstance().getReference("uploads/" + userEmail);
-
-
-//        mdatabaseRef = FirebaseDatabase.getInstance().getReference("uploads");
-//        FirebaseDatabase db = FirebaseDatabase.getInstance();
-//        mdatabaseRef = db.getReference("uploads");
 
 
 
@@ -173,8 +177,8 @@ AddImagesFragment extends Fragment {
 
                     Upload upload;
                     upload = new Upload("fasdfasdf", taskSnapshot.getUploadSessionUri().toString());
-//                    String uploadID = mdatabaseRef.push().getKey();
-//                    mdatabaseRef.child(uploadID).setValue(upload);
+                    String uploadID = mdatabaseRef.push().getKey();
+                    mdatabaseRef.child(uploadID).setValue(upload);
                 }
             })
                     .addOnFailureListener(new OnFailureListener() {

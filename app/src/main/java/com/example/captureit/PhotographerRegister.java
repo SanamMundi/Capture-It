@@ -135,7 +135,6 @@ public class PhotographerRegister extends Fragment {
                     Bundle args = new Bundle();
                     args.putString("name", p.getName());
                     args.putString("email", p.getEmail());
-//                    args.putString("id", p.getId());
                     args.putString("location", p.getLocationName());
                     args.putString("experience", p.getExperience());
                     args.putString("password", pas);

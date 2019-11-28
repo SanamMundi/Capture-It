@@ -108,37 +108,38 @@ public class AddingMoreFragment extends Fragment {
                     final String experience = b.getString("experience");
                     final String password = b.getString("password");
 
+                    Log.d("Passs", email + password);
 
-                    boolean wedCheck = wedding.isChecked();
-                    boolean funeralCheck = funeral.isChecked();
-                    boolean potraitCheck = potrait.isChecked();
-                    boolean birthCheck = birthdays.isChecked();
-                    boolean pregCheck = pregnancy.isChecked();
-
-
-                    boolean[] arr = new boolean[5];
-                    arr[0] = wedCheck;
-                    arr[1] = funeralCheck;
-                    arr[2] = potraitCheck;
-                    arr[3] = birthCheck;
-                    arr[4] = pregCheck;
+//                    boolean wedCheck = wedding.isChecked();
+//                    boolean funeralCheck = funeral.isChecked();
+//                    boolean potraitCheck = potrait.isChecked();
+//                    boolean birthCheck = birthdays.isChecked();
+//                    boolean pregCheck = pregnancy.isChecked();
 
 
+//                    boolean[] arr = new boolean[5];
+//                    arr[0] = wedCheck;
+//                    arr[1] = funeralCheck;
+//                    arr[2] = potraitCheck;
+//                    arr[3] = birthCheck;
+//                    arr[4] = pregCheck;
 
-                    if(wedCheck==true){
-                        ser.add("Weddings");
-                    }
-                    if(funeralCheck==true){
-                        ser.add("Funeral");
-                    }
-                    if(potraitCheck==true){
-                        ser.add("Portrait");
-                    }
-                    if(birthCheck==true){
-                        ser.add("Birthdays");
-                    }if(pregCheck==true){
-                        ser.add("Pregnancy");
-                    }
+
+
+//                    if(wedCheck==true){
+//                        ser.add("Weddings");
+//                    }
+//                    if(funeralCheck==true){
+//                        ser.add("Funeral");
+//                    }
+//                    if(potraitCheck==true){
+//                        ser.add("Portrait");
+//                    }
+//                    if(birthCheck==true){
+//                        ser.add("Birthdays");
+//                    }if(pregCheck==true){
+//                        ser.add("Pregnancy");
+//                    }
 
 
                         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -146,8 +147,8 @@ public class AddingMoreFragment extends Fragment {
                         public void onComplete(@NonNull Task<AuthResult> task) {
 
                             if (task.isSuccessful()) {
-
                                 FirebaseUser user = mAuth.getCurrentUser();
+
 
                                 HashMap<String,String> data =  new HashMap<>();
                                 data.put("email",user.getEmail());
@@ -181,11 +182,6 @@ public class AddingMoreFragment extends Fragment {
                             }
                         }
                     });
-
-
-
-                    Log.d("checkeddddd", wedCheck + " " + funeralCheck + potraitCheck + birthCheck);
-
                 }
             }
         });

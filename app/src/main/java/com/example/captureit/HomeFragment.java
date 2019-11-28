@@ -34,21 +34,18 @@ public class HomeFragment extends Fragment {
 
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-//    Context ctx;
     RecyclerView mRecyclerView;
     MyAdapter myAdapter;
 
     ArrayList<Photographer> arr = new ArrayList<>();;
 
     public HomeFragment() {
-        // Required empty public constructor
     }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_home, container, false);
 
 
@@ -63,37 +60,30 @@ public class HomeFragment extends Fragment {
                         if (task.isSuccessful()) {
 
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                Photographer p = new Photographer();
-                                Log.d("dataaaaaaaa", document.getId() + " => " + document.getData());
-                                p.setId(document.getId());
-                                p.setName(document.get("name").toString());
-                                p.setEmail(document.get("email").toString());
-                                p.setExperience(document.get("experience").toString());
-                                p.setDescription(document.get("description").toString());
-                                p.setLocationName(document.get("location").toString());
-                                p.setPrice(document.get("price").toString());
-                                arr.add(p);
-                            }
-                            Log.d("sizeeeee", arr.size() +"");
-                            for(Photographer p: arr){
-                                Log.d("aaaaaaaaaa", p.toString());
-                            }
+                                if(document.get("role").equals("photographer")){
+                                    Photographer p = new Photographer();
+                                    Log.d("dataaaaaaaa", document.getId() + " => " + document.getData());
+                                    p.setId(document.getId());
+                                    p.setName(document.get("name").toString());
+                                    p.setEmail(document.get("email").toString());
+                                    p.setExperience(document.get("experience").toString());
+                                    p.setDescription(document.get("description").toString());
+                                    p.setLocationName(document.get("location").toString());
+                                    p.setPrice(document.get("price").toString());
+                                    arr.add(p);
+                                }
 
-
+                            }
                             myAdapter = new MyAdapter(getContext(), getMyList(arr));
                             mRecyclerView.setAdapter(myAdapter);
-
                         } else {
                             Log.w("eeeeeeeeee", "Error getting documents.", task.getException());
                         }
                     }
                 });
-
-
-
-
         return v;
     }
+
 
     private ArrayList<Model> getMyList(ArrayList<Photographer> arr){
 
