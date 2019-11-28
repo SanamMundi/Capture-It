@@ -36,7 +36,6 @@ public class HomeFragment extends Fragment {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     RecyclerView mRecyclerView;
     MyAdapter myAdapter;
-
     ArrayList<Photographer> arr = new ArrayList<>();;
 
     public HomeFragment() {
@@ -94,6 +93,7 @@ public class HomeFragment extends Fragment {
             m.setDescription(arr.get(i).getLocationName());
             m.setTitle(arr.get(i).getName());
             m.setPrice(arr.get(i).getPrice());
+            m.setId(arr.get(i).getId());
             models.add(m);
         }
         return models;

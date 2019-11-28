@@ -85,14 +85,10 @@ AddImagesFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-
-
         View v = inflater.inflate(R.layout.fragment_add_images, container, false);
 
 //        user = auth.getCurrentUser();
 //        String userEmail = user.getEmail();
-
-
 
         buttonChoose = v.findViewById(R.id.choose);
         buttonUpload = v.findViewById(R.id.upload);
@@ -165,7 +161,7 @@ AddImagesFragment extends Fragment {
 
     private void uploadFile(){
         if(mImageUri!=null){
-            StorageReference fileReference = mstorageRef.child(System.currentTimeMillis()
+            final StorageReference fileReference = mstorageRef.child(user.getEmail()).child(System.currentTimeMillis()
             + "." + getFileExtension(mImageUri));
 
             mUploadTask = fileReference.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -181,10 +177,15 @@ AddImagesFragment extends Fragment {
 
                     Toast.makeText(getContext(), "Upload successful", Toast.LENGTH_LONG).show();
 
-                    Upload upload;
-                    upload = new Upload("fasdfasdf", taskSnapshot.getUploadSessionUri().toString());
-                    String uploadID = mdatabaseRef.push().getKey();
-                    mdatabaseRef.child(uploadID).setValue(upload);
+                    fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            Upload upload;
+                            upload = new Upload("fasdfasdf", uri.toString());
+                            String uploadID = mdatabaseRef.push().getKey();
+                            mdatabaseRef.child(user.getUid()).child(uploadID).setValue(upload);
+                        }
+                    });
                 }
             })
                     .addOnFailureListener(new OnFailureListener() {

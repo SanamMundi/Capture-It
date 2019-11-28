@@ -67,6 +67,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyHolder> {
                 String gTitle = models.get(position).getTitle();
                 String gDesc = models.get(position).getDescription();
                 String gImg = models.get(position).getImg();
+                String gId = models.get(position).getId();
 
 
 
@@ -75,6 +76,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyHolder> {
                 i.putExtra("iDesc", gDesc);
                 i.putExtra("iImage", gImg);
                 i.putExtra("id", user.getUid());
+                i.putExtra("photoId", gId);
                 c.startActivity(i);
             }
         });

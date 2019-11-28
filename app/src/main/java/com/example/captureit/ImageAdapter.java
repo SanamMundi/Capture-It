@@ -2,6 +2,7 @@ package com.example.captureit;
 
 import android.content.Context;
 import android.text.Layout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -36,7 +38,9 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
     public void onBindViewHolder(@NonNull ImageViewHolder holder, int position) {
 
         Upload uploadCurrent = mUploads.get(position);
-        Picasso.with(mcontext).load(uploadCurrent.getmImageUrl()).fit().centerCrop().into(holder.img);
+        Log.d("iiiiiiiiii", uploadCurrent.getmImageUrl());
+        Picasso.with(mcontext).load(uploadCurrent.getmImageUrl()).placeholder(R.drawable.ic_launcher_foreground).
+                fit().centerCrop().into(holder.img);
     }
 
     @Override

@@ -6,6 +6,8 @@ public class Model {
     private String img;
 
 
+    private String id;
+
 
     private String price;
 
@@ -17,6 +19,7 @@ public class Model {
     public void setPrice(String price) {
         this.price = price;
     }
+
     public String getTitle() {
         return title;
     }
@@ -39,5 +42,13 @@ public class Model {
 
     public String getImg() {
         return img;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }
