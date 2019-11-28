@@ -1,8 +1,10 @@
 package com.example.captureit;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -14,6 +16,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreSettings;
+
+import java.util.HashMap;
 
 
 /**
@@ -22,11 +35,14 @@ import android.widget.TextView;
 public class PhotographerRegister extends Fragment {
 
 
+    private FirebaseAuth mAuth;
     Spinner locationSpinner;
     Spinner experienceSpinner;
+    FirebaseFirestore db ;
     private Button pRegister;
     private TextView signInInstead;
     private EditText name, email, pass, cPass;
+    Intent intent;
 
     public PhotographerRegister() {
         // Required empty public constructor
@@ -39,6 +55,7 @@ public class PhotographerRegister extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_photographer_register, container, false);
 
+        mAuth = FirebaseAuth.getInstance();
         locationSpinner = v.findViewById(R.id.spinnerLocation);
         experienceSpinner = v.findViewById(R.id.spinnerExperience);
         pRegister = v.findViewById(R.id.registerButton);
@@ -47,6 +64,11 @@ public class PhotographerRegister extends Fragment {
         email = v.findViewById(R.id.enteredEmail);
         pass = v.findViewById(R.id.enteredPassword);
         cPass = v.findViewById(R.id.enteredCPassword);
+
+        db =  FirebaseFirestore.getInstance();
+        FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
+                .setTimestampsInSnapshotsEnabled(true)
+                .build();
 
 
 
@@ -59,25 +81,63 @@ public class PhotographerRegister extends Fragment {
         experienceSpinner.setAdapter(adapter1);
 
 
-        final String naam = name.getText().toString();
-        final String emails = email.getText().toString();
-        final String pas = pass.getText().toString();
-        final String confirm = cPass.getText().toString();
 
 
-        String locationData = locationSpinner.getSelectedItem().toString();
-        String experienceData = experienceSpinner.getSelectedItem().toString();
+
+
 
 
         pRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-//                MainActivity.addImagesFragment();
-//                validateData();
+//                MainActivity.addImagesFragment()
+//                ;
+                final String naam = name.getText().toString();
+                final String emails = email.getText().toString();
+                final String pas = pass.getText().toString();
+                final String confirm = cPass.getText().toString();
 
-                Log.d("hello", "hello");
-                Log.d("jjjjjjjjjjjjjjjjjj",naam + emails + pas + confirm );
+                final String locationData = locationSpinner.getSelectedItem().toString();
+                final String experienceData = experienceSpinner.getSelectedItem().toString();
+
+
+                String result = validateData(naam, emails, pas, confirm, locationData, experienceData);
+
+                if(result.equals("Good")){
+                    mAuth.createUserWithEmailAndPassword(emails, pas).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+
+                            if (task.isSuccessful()) {
+                                FirebaseUser user = mAuth.getCurrentUser();
+
+
+                                HashMap<String,String> data =  new HashMap<>();
+                                data.put("email",user.getEmail());
+
+
+                                if(!user.getEmail().equals("sanam@gmail.com")) {
+                                    Toast.makeText(getContext(), "already logged in ", Toast.LENGTH_LONG).show();
+                                    intent = new Intent(getContext(),HomeActivity.class);
+                                    data.put("role", "photographer");
+                                }
+                                else {
+                                    intent = new Intent(getContext(), BaseActivity.class);
+                                    data.put("role", "admin");
+                                }
+
+                                db.collection("Users").document(user.getUid()).set(data);
+
+
+                                startActivity(intent);
+                            } else {
+                                Toast.makeText(getContext(), "Authentication failed.",
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                }
             }
         });
 

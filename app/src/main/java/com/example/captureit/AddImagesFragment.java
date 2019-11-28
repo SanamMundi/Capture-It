@@ -40,7 +40,8 @@ import static android.app.Activity.RESULT_OK;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AddImagesFragment extends Fragment {
+public class
+AddImagesFragment extends Fragment {
 
 
     private static final int PICK_IMAGE_REQUEST = 1;
@@ -51,7 +52,7 @@ public class AddImagesFragment extends Fragment {
     private ImageView img;
 
     private StorageReference mstorageRef;
-//    private DatabaseReference mdatabaseRef;
+    private DatabaseReference mdatabaseRef;
 
 
     private Uri mImageUri;
@@ -79,7 +80,7 @@ public class AddImagesFragment extends Fragment {
         pBar = v.findViewById(R.id.progressBar);
 
         mstorageRef = FirebaseStorage.getInstance().getReference("uploads");
-//        mdatabaseRef = FirebaseDatabase.getInstance().getReference("uploads");
+        mdatabaseRef = FirebaseDatabase.getInstance().getReference("uploads");
 
 
 
@@ -155,8 +156,8 @@ public class AddImagesFragment extends Fragment {
 
                     Upload upload;
                     upload = new Upload("fasdfasdf", taskSnapshot.getUploadSessionUri().toString());
-//                    String uploadID = mdatabaseRef.push().getKey();
-//                    mdatabaseRef.child(uploadID).setValue(upload);
+                    String uploadID = mdatabaseRef.push().getKey();
+                    mdatabaseRef.child(uploadID).setValue(upload);
                 }
             })
                     .addOnFailureListener(new OnFailureListener() {

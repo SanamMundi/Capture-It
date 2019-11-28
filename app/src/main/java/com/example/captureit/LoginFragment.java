@@ -92,14 +92,13 @@ public class LoginFragment extends Fragment {
                                                         startActivity(new Intent(getContext(),BaseActivity.class));}
                                                     else{
                                                     Log.d("already logged in", "dddddddddddddddddd");
-                                                        startActivity(new Intent(getContext(), BaseActivity.class));}
+                                                        startActivity(new Intent(getContext(), MainActivity.class));}
 
                                                 } else {
                                                     Log.d("signin", "No such document");
                                                 }
                                             }
                                         });
-
                                     } else {
                                         Toast.makeText(getContext(), "Authentication failed.",
                                                 Toast.LENGTH_SHORT).show();
