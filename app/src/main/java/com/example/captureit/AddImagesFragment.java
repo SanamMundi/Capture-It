@@ -51,7 +51,7 @@ public class AddImagesFragment extends Fragment {
     private ImageView img;
 
     private StorageReference mstorageRef;
-    private DatabaseReference mdatabaseRef;
+//    private DatabaseReference mdatabaseRef;
 
 
     private Uri mImageUri;
@@ -71,14 +71,20 @@ public class AddImagesFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_add_images, container, false);
 
 
+
+
         buttonChoose = v.findViewById(R.id.choose);
         buttonUpload = v.findViewById(R.id.upload);
         img = v.findViewById(R.id.imageShow);
         pBar = v.findViewById(R.id.progressBar);
 
         mstorageRef = FirebaseStorage.getInstance().getReference("uploads");
-        FirebaseDatabase db = FirebaseDatabase.getInstance();
-        mdatabaseRef = db.getReference("uploads");
+//        mdatabaseRef = FirebaseDatabase.getInstance().getReference("uploads");
+
+
+
+//        FirebaseDatabase db = FirebaseDatabase.getInstance();
+//        mdatabaseRef = db.getReference("uploads");
 
 
         buttonChoose.setOnClickListener(new View.OnClickListener() {
@@ -149,8 +155,8 @@ public class AddImagesFragment extends Fragment {
 
                     Upload upload;
                     upload = new Upload("fasdfasdf", taskSnapshot.getUploadSessionUri().toString());
-                    String uploadID = mdatabaseRef.push().getKey();
-                    mdatabaseRef.child(uploadID).setValue(upload);
+//                    String uploadID = mdatabaseRef.push().getKey();
+//                    mdatabaseRef.child(uploadID).setValue(upload);
                 }
             })
                     .addOnFailureListener(new OnFailureListener() {

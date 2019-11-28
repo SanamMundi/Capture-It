@@ -28,7 +28,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/photographerEmail"
+            android:id="@+id/enteredEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -45,7 +45,7 @@
             app:layout_constraintTop_toBottomOf="@+id/appName" />
 
         <EditText
-            android:id="@+id/photographerConfirmPassword"
+            android:id="@+id/enteredCPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -58,10 +58,10 @@
             android:inputType="textPassword"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/photgrapherPassword" />
+            app:layout_constraintTop_toBottomOf="@+id/enteredPassword" />
 
         <Button
-            android:id="@+id/photgrapherRegister"
+            android:id="@+id/registerButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -78,7 +78,7 @@
             app:layout_constraintTop_toBottomOf="@+id/spinnerExperience" />
 
         <TextView
-            android:id="@+id/photoSignIn"
+            android:id="@+id/signInTextview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -96,7 +96,7 @@
             app:layout_constraintVertical_bias="0.46" />
 
         <EditText
-            android:id="@+id/photographerName"
+            android:id="@+id/enteredName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -109,10 +109,10 @@
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/photographerEmail" />
+            app:layout_constraintTop_toBottomOf="@+id/enteredEmail" />
 
         <EditText
-            android:id="@+id/photgrapherPassword"
+            android:id="@+id/enteredPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -122,10 +122,10 @@
             android:layout_marginRight="8dp"
             android:ems="10"
             android:hint="Password"
-            android:inputType="textPersonName"
+            android:inputType="textPassword"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/photographerName" />
+            app:layout_constraintTop_toBottomOf="@+id/enteredName" />
 
         <Spinner
             android:id="@+id/spinnerLocation"
@@ -134,7 +134,7 @@
             android:layout_marginTop="28dp"
             android:autofillHints="Location"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/photographerConfirmPassword" />
+            app:layout_constraintTop_toBottomOf="@+id/enteredCPassword" />
 
         <Spinner
             android:id="@+id/spinnerExperience"
@@ -145,7 +145,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/photographerConfirmPassword" />
+            app:layout_constraintTop_toBottomOf="@+id/enteredCPassword" />
 
         <!--<TextView-->
         <!--android:id="@+id/textView5"-->
