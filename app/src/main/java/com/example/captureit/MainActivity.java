@@ -77,4 +77,8 @@ public class MainActivity extends AppCompatActivity {
     public static void addImagesFragment(){
         fragmentManager.beginTransaction().replace(R.id.frameContainer, new AddImagesFragment()).commit();
     }
+
+    public static void addMoreFragment(){
+        fragmentManager.beginTransaction().replace(R.id.frameContainer, new AddingMoreFragment()).commit();
+    }
 }

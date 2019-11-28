@@ -3,7 +3,8 @@ package com.example.captureit;
 public class Photographer {
     private String id;
     private String name;
-//    private double rating;
+    private String email;
+    //    private double rating;
     private String[] photos;
 //    private String[] reviews;
     private String price;
@@ -11,7 +12,16 @@ public class Photographer {
     private String locationName;
     private String latitude;
     private String longitude;
-    private double experience;
+    private String experience;
+    private String description;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public void setId(String id) {
         this.id = id;
@@ -49,7 +59,7 @@ public class Photographer {
         this.longitude = longitude;
     }
 
-    public void setExperience(double experience) {
+    public void setExperience(String experience) {
         this.experience = experience;
     }
 
@@ -89,8 +99,17 @@ public class Photographer {
         return longitude;
     }
 
-    public double getExperience() {
+    public String getExperience() {
         return experience;
+    }
+
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
 

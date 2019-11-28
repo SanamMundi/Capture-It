@@ -23,9 +23,11 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -46,13 +48,16 @@ AddImagesFragment extends Fragment {
 
     private static final int PICK_IMAGE_REQUEST = 1;
 //    private static final int RESULT_OK = -1;
-    private Button buttonUpload;
+    private Button buttonUpload, buttonProceed;
+    FirebaseAuth auth =  FirebaseAuth.getInstance();
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    FirebaseUser user;
     private Button buttonChoose;
     private ProgressBar pBar;
     private ImageView img;
 
     private StorageReference mstorageRef;
-    private DatabaseReference mdatabaseRef;
+//    private DatabaseReference mdatabaseRef;
 
 
     private Uri mImageUri;
@@ -71,6 +76,8 @@ AddImagesFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_add_images, container, false);
 
+        user = auth.getCurrentUser();
+        String userEmail = user.getUid();
 
 
 
@@ -78,14 +85,16 @@ AddImagesFragment extends Fragment {
         buttonUpload = v.findViewById(R.id.upload);
         img = v.findViewById(R.id.imageShow);
         pBar = v.findViewById(R.id.progressBar);
+        buttonProceed = v.findViewById(R.id.proceedButton);
 
-        mstorageRef = FirebaseStorage.getInstance().getReference("uploads");
-        mdatabaseRef = FirebaseDatabase.getInstance().getReference("uploads");
+        mstorageRef = FirebaseStorage.getInstance().getReference("uploads/" + userEmail);
 
 
-
+//        mdatabaseRef = FirebaseDatabase.getInstance().getReference("uploads");
 //        FirebaseDatabase db = FirebaseDatabase.getInstance();
 //        mdatabaseRef = db.getReference("uploads");
+
+
 
 
         buttonChoose.setOnClickListener(new View.OnClickListener() {
@@ -99,6 +108,14 @@ AddImagesFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 uploadFile();
+            }
+        });
+
+        buttonProceed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getContext(), PhotographerProfileActivity.class);
+                startActivity(i);
             }
         });
 
@@ -156,8 +173,8 @@ AddImagesFragment extends Fragment {
 
                     Upload upload;
                     upload = new Upload("fasdfasdf", taskSnapshot.getUploadSessionUri().toString());
-                    String uploadID = mdatabaseRef.push().getKey();
-                    mdatabaseRef.child(uploadID).setValue(upload);
+//                    String uploadID = mdatabaseRef.push().getKey();
+//                    mdatabaseRef.child(uploadID).setValue(upload);
                 }
             })
                     .addOnFailureListener(new OnFailureListener() {

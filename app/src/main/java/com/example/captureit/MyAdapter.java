@@ -45,6 +45,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyHolder> {
 
         holder.mTitle.setText(models.get(position).getTitle());
         holder.mDes.setText(models.get(position).getDescription());
+        holder.mPrice.setText(models.get(position).getPrice() + "/day");
+
 
 
         Glide.with(c).load(models.get(position).getImg())

@@ -5,6 +5,18 @@ public class Model {
     private String title, description;
     private String img;
 
+
+
+    private String price;
+
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
     public String getTitle() {
         return title;
     }

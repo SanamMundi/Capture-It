@@ -55,8 +55,8 @@ public class Firebase {
 
 
 
-    public void getData(){
-        db.collection("users")
+    public void getData(String collection ){
+        db.collection(collection)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override

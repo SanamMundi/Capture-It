@@ -13,6 +13,7 @@ implements View.OnClickListener{
 
     ImageView imageView;
     TextView mTitle, mDes;
+    TextView mPrice;
     ItemClickListener itemClickListener;
 
     MyHolder(@NonNull View itemView) {
@@ -21,6 +22,7 @@ implements View.OnClickListener{
         this.imageView = itemView.findViewById(R.id.imageIv);
         this.mTitle = itemView.findViewById(R.id.titleTv);
         this.mDes = itemView.findViewById(R.id.descriptionTv);
+        this.mPrice = itemView.findViewById(R.id.priceTv);
 
         itemView.setOnClickListener(this);
     }

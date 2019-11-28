@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -39,6 +40,7 @@ public class PhotographerRegister extends Fragment {
     Spinner locationSpinner;
     Spinner experienceSpinner;
     FirebaseFirestore db ;
+//    FirebaseUser user;
     private Button pRegister;
     private TextView signInInstead;
     private EditText name, email, pass, cPass;
@@ -65,6 +67,8 @@ public class PhotographerRegister extends Fragment {
         pass = v.findViewById(R.id.enteredPassword);
         cPass = v.findViewById(R.id.enteredCPassword);
 
+
+
         db =  FirebaseFirestore.getInstance();
         FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
                 .setTimestampsInSnapshotsEnabled(true)
@@ -84,19 +88,26 @@ public class PhotographerRegister extends Fragment {
 
 
 
-
-
-
         pRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+
+                final Photographer p = new Photographer();
+
 //                MainActivity.addImagesFragment()
+
+//                user = mAuth.getCurrentUser();
 //                ;
                 final String naam = name.getText().toString();
                 final String emails = email.getText().toString();
                 final String pas = pass.getText().toString();
                 final String confirm = cPass.getText().toString();
+
+
+
+
+
 
                 final String locationData = locationSpinner.getSelectedItem().toString();
                 final String experienceData = experienceSpinner.getSelectedItem().toString();
@@ -104,40 +115,95 @@ public class PhotographerRegister extends Fragment {
 
                 String result = validateData(naam, emails, pas, confirm, locationData, experienceData);
 
+
+                Log.d("rrrrrrrrrr", result + locationData + experienceData);
+
                 if(result.equals("Good")){
-                    mAuth.createUserWithEmailAndPassword(emails, pas).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-
-                            if (task.isSuccessful()) {
-                                FirebaseUser user = mAuth.getCurrentUser();
 
 
-                                HashMap<String,String> data =  new HashMap<>();
-                                data.put("email",user.getEmail());
 
 
-                                if(!user.getEmail().equals("sanam@gmail.com")) {
-                                    Toast.makeText(getContext(), "already logged in ", Toast.LENGTH_LONG).show();
-                                    intent = new Intent(getContext(),HomeActivity.class);
-                                    data.put("role", "photographer");
-                                }
-                                else {
-                                    intent = new Intent(getContext(), BaseActivity.class);
-                                    data.put("role", "admin");
-                                }
 
-                                db.collection("Users").document(user.getUid()).set(data);
+                    p.setName(naam);
+                    p.setEmail(emails);
+//                    p.setId(user.getUid());
+                    p.setLocationName(locationData);
+                    p.setExperience(experienceData);
 
 
-                                startActivity(intent);
-                            } else {
-                                Toast.makeText(getContext(), "Authentication failed.",
-                                        Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
+                    AddingMoreFragment add = new AddingMoreFragment();
+                    Bundle args = new Bundle();
+                    args.putString("name", p.getName());
+                    args.putString("email", p.getEmail());
+//                    args.putString("id", p.getId());
+                    args.putString("location", p.getLocationName());
+                    args.putString("experience", p.getExperience());
+                    args.putString("password", pas);
+                    add.setArguments(args);
+
+                    FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                    fragmentTransaction.replace(R.id.frameContainer, add);
+                    fragmentTransaction.addToBackStack(null);
+                    fragmentTransaction.commit();
+
+
+
+
+//                    mAuth.createUserWithEmailAndPassword(emails, pas).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+//                        @Override
+//                        public void onComplete(@NonNull Task<AuthResult> task) {
+//
+//                            if (task.isSuccessful()) {
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//                                HashMap<String,String> data =  new HashMap<>();
+//                                data.put("email",user.getEmail());
+//                                data.put("name", p.getName());
+//                                data.put("location", p.getLocationName());
+//                                data.put("experience", p.getExperience());
+//
+//
+//                                if(!user.getEmail().equals("admin@gmail.com")) {
+////                                    Toast.makeText(getContext(), "already logged in ", Toast.LENGTH_LONG).show();
+////                                    intent = new Intent(getContext(),HomeActivity.class);
+//                                    MainActivity.addMoreFragment();
+//                                    data.put("role", "photographer");
+//                                }
+//                                else {
+//                                    intent = new Intent(getContext(), BaseActivity.class);
+//                                    data.put("role", "admin");
+//                                    startActivity(intent);
+//                                }
+//
+//                                db.collection("Users").document(user.getUid()).set(data);
+//
+//
+////                                startActivity(intent);
+//                            } else {
+//                                Toast.makeText(getContext(), "Authentication failed.",
+//                                        Toast.LENGTH_SHORT).show();
+//                            }
+//                        }
+//                    });
+
+
                 }
+
+
+
+                else{
+                    Toast.makeText(getContext(), result, Toast.LENGTH_SHORT).show();
+                }
+
+
+
             }
         });
 
